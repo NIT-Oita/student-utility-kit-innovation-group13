@@ -1,75 +1,45 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include "storage.h"
 
-#define MAX_WORDS 100
-#define MAX_LEN 50
-
-typedef struct {
+void addWordMenu() {
     char word[MAX_LEN];
     char meaning[MAX_LEN];
-} Word;
-
-Word words[MAX_WORDS];
-int wordCount = 0;
-
-void loadWords() {
-    FILE *fp = fopen("words.txt", "r");
-    if (!fp) return;
-
-    while (fscanf(fp, "%s %s", words[wordCount].word, words[wordCount].meaning) != EOF) {
-        wordCount++;
-    }
-    fclose(fp);
-}
-
-void saveWords() {
-    FILE *fp = fopen("words.txt", "w");
-    for (int i = 0; i < wordCount; i++) {
-        fprintf(fp, "%s %s\n", words[i].word, words[i].meaning);
-    }
-    fclose(fp);
-}
-
-void addWord() {
-    if (wordCount >= MAX_WORDS) {
-        printf("“o˜^ãŒÀ‚Å‚·\n");
-        return;
-    }
 
     printf("’PŒê: ");
-    scanf("%s", words[wordCount].word);
+    scanf("%s", word);
 
     printf("ˆÓ–¡: ");
-    scanf("%s", words[wordCount].meaning);
+    scanf("%s", meaning);
 
-    wordCount++;
-    saveWords();
-    printf("“o˜^‚µ‚Ü‚µ‚½\n");
+    if (addWord(word, meaning)) {
+        printf("“o˜^‚µ‚Ü‚µ‚½\n");
+    } else {
+        printf("“o˜^ãŒÀ‚Å‚·\n");
+    }
 }
 
 void quiz() {
-    if (wordCount == 0) {
+    Word *w = getRandomWord();
+    if (!w) {
         printf("’PŒê‚ª‚ ‚è‚Ü‚¹‚ñ\n");
         return;
     }
 
-    srand(time(NULL));
-    int i = rand() % wordCount;
-
     char answer[MAX_LEN];
-    printf("ˆÓ–¡‚ð“š‚¦‚Ä‚­‚¾‚³‚¢: %s ¨ ", words[i].word);
+    printf("ˆÓ–¡‚ð“š‚¦‚Ä‚­‚¾‚³‚¢: %s ¨ ", w->word);
     scanf("%s", answer);
 
-    if (strcmp(answer, words[i].meaning) == 0) {
+    if (strcmp(answer, w->meaning) == 0) {
         printf("³‰ðI\n");
     } else {
-        printf("•s³‰ðc ³‰ð‚Í %s\n", words[i].meaning);
+        printf("•s³‰ðc ³‰ð‚Í %s\n", w->meaning);
     }
 }
 
 int main() {
+    srand(time(NULL));
     loadWords();
 
     int choice;
@@ -81,7 +51,7 @@ int main() {
         printf("‘I‘ð: ");
         scanf("%d", &choice);
 
-        if (choice == 1) addWord();
+        if (choice == 1) addWordMenu();
         else if (choice == 2) quiz();
         else if (choice == 3) break;
         else printf("–³Œø‚È“ü—Í‚Å‚·\n");
