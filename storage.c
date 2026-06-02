@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "storage.h"
+#include<time.h>
 
 Word words[MAX_WORDS];
 int wordCount = 0;
