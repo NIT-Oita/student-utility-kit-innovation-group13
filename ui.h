@@ -29,6 +29,11 @@ void show_question(const char question[]);
 /*答えを表示*/
 void show_answer(const char answer[]);
 
+/*ユーザーが回答を入力*/
+void input_answer(char answer[], int size);
+
+void show_result(int is_correct);
+
 /*メッセージを表示*/
 void show_message(const char message[]);
 

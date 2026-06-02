@@ -1,33 +1,34 @@
 #include <stdio.h>
+#include <string.h>
 #include "ui.h"
 
 /*
 *ui.c
-*æš—è¨˜ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚«ãƒ¼ãƒ‰ã®UIå‡¦ç†ã‚’ã¾ã¨ã‚ã¦ã„ã¾ã™
-*printfã§ç”»é¢è¡¨ç¤ºã¨ã€scanf/getcharã«ã‚ˆã‚‹å…¥åŠ›å—ä»˜ã‚’ã—ã¾ã™ã€‚
+*ˆÃ‹Lƒtƒ‰ƒbƒVƒ…ƒJ[ƒh‚ÌUIˆ—‚ğ‚Ü‚Æ‚ß‚Ä‚¢‚Ü‚·
+*printf‚Å‰æ–Ê•\¦‚ÆAscanf/getchar‚É‚æ‚é“ü—Íó•t‚ğ‚µ‚Ü‚·B
 */
 
-/*ã‚¿ã‚¤ãƒˆãƒ«ã‚’è¡¨ç¤º*/
+/*ƒ^ƒCƒgƒ‹‚ğ•\¦*/
 void show_title(void){
 
     printf("=======================================\n");
-    printf("           æš—è¨˜ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚«ãƒ¼ãƒ‰          \n");
+    printf("           ˆÃ‹Lƒtƒ‰ƒbƒVƒ…ƒJ[ƒh          \n");
     printf("=======================================\n");
 
 }
 
-/*ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¡¨ç¤º*/
+/*ƒƒCƒ“ƒƒjƒ…[‚Ì•\¦*/
 void show_main_menu(void){
     printf("\n");
-    printf("===== ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ =====");
-    printf("1. æš—è¨˜ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ã‚«ãƒ¼ãƒ‰é–‹å§‹\n");
-    printf("2. æš—è¨˜ã‚«ãƒ¼ãƒ‰ã‚’è¿½åŠ \n");
-    printf("3. æš—è¨˜ã‚«ãƒ¼ãƒ‰ä¸€è¦§\n");
-    printf("4. çµ‚äº†ã™ã‚‹\n");
-    printf("ç•ªå·ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„: ");
+    printf("===== ƒƒCƒ“ƒƒjƒ…[ =====\n");
+    printf("1. ˆÃ‹Lƒtƒ‰ƒbƒVƒ…ƒJ[ƒhŠJn\n");
+    printf("2. ˆÃ‹LƒJ[ƒh‚ğ’Ç‰Á\n");
+    printf("3. ˆÃ‹LƒJ[ƒhˆê——\n");
+    printf("4. I—¹‚·‚é\n");
+    printf("”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
 }
 
-/*å…¥åŠ›ã•ã‚ŒãŸæ•°å­—ãŒæœ‰åŠ¹ã‹å¦ã‹ã‚’åˆ¤å®š*/
+/*“ü—Í‚³‚ê‚½”š‚ª—LŒø‚©”Û‚©‚ğ”»’è*/
 int input_menu_choice(void){
     int choice;
 
@@ -40,33 +41,48 @@ int input_menu_choice(void){
         }else{
             while(getchar() != '\n');
         }
-        printf("1ã‹ã‚‰4ã®ç•ªå·ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„: ");
+        printf("1‚©‚ç4‚Ì”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: ");
     }
 }
 
 
-/*å•é¡Œæ–‡ã‚’è¡¨ç¤º*/
+/*–â‘è•¶‚ğ•\¦*/
 void show_question(const char question[]){
     printf("\n");
-    printf("===== å•é¡Œ =====");
+    printf("===== –â‘è =====\n");
     printf("%s\n",question);
 }
 
 
-/*ç­”ãˆã‚’è¡¨ç¤º*/
+/*“š‚¦‚ğ•\¦*/
 void show_answer(const char answer[]){
     printf("\n");
-    printf("===== ç­”ãˆ =====");
+    printf("===== “š‚¦ =====\n");
     printf("%s\n", answer);
 }
 
-/*ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º*/
+/*ƒƒbƒZ[ƒW‚ğ•\¦*/
 void show_message(const char message[]){
     printf("%s\n", message);
 }
 
-/*Enterã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã‚‹ã¾ã§å¾…æ©Ÿ*/
+/*EnterƒL[‚ª‰Ÿ‚³‚ê‚é‚Ü‚Å‘Ò‹@*/
 void wait_enter(void){
-    printf("\nEnterã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ãã ã•ã„â€¦");
+    printf("\nEnterƒL[‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢c");
     getchar();
+}
+
+void input_answer(char answer[], int size){
+    printf("“š‚¦‚ğ“ü—Í: ");
+    fgets(answer, size, stdin);
+
+    answer[strcspn(answer, "\n")] = '\0';
+}
+
+void show_result(int is_correct){
+    if(is_correct){
+        printf("³‰ğI\n");
+    }else{
+        printf("•s³‰ğc\n");
+    }
 }
