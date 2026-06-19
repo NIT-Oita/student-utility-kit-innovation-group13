@@ -8,34 +8,34 @@ void addWordMenu() {
     char word[MAX_LEN];
     char meaning[MAX_LEN];
 
-    printf("’PŒê: ");
+    printf("ï¿½Pï¿½ï¿½: ");
     scanf("%s", word);
 
-    printf("ˆÓ–¡: ");
+    printf("ï¿½Ó–ï¿½: ");
     scanf("%s", meaning);
 
     if (addWord(word, meaning)) {
-        printf("“o˜^‚µ‚Ü‚µ‚½\n");
+        printf("ï¿½oï¿½^ï¿½ï¿½ï¿½\n");
     } else {
-        printf("“o˜^ãŒÀ‚Å‚·\n");
+        printf("ï¿½oï¿½^ï¿½ï¿½ï¿½ï¿½Å‚ï¿½\n");
     }
 }
 
 void quiz() {
     Word *w = getRandomWord();
     if (!w) {
-        printf("’PŒê‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+        printf("ï¿½Pï¿½ê‚ªï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½\n");
         return;
     }
 
     char answer[MAX_LEN];
-    printf("ˆÓ–¡‚ğ“š‚¦‚Ä‚­‚¾‚³‚¢: %s ¨ ", w->word);
+    printf("ï¿½Ó–ï¿½ï¿½ğ“š‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: %s ï¿½ï¿½ ", w->word);
     scanf("%s", answer);
 
     if (strcmp(answer, w->meaning) == 0) {
-        printf("³‰ğI\n");
+        printf("ï¿½ï¿½ï¿½ï¿½ï¿½I\n");
     } else {
-        printf("•s³‰ğc ³‰ğ‚Í %s\n", w->meaning);
+        printf("ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½c ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ %s\n", w->meaning);
     }
 }
 
@@ -45,17 +45,17 @@ int main() {
 
     int choice;
     while (1) {
-        printf("\n--- ’PŒê‹L‰¯ƒAƒvƒŠ ---\n");
-        printf("1. ’PŒê‚ğ“o˜^\n");
-        printf("2. ƒNƒCƒY‚ğ‚·‚é\n");
-        printf("3. I—¹\n");
-        printf("‘I‘ğ: ");
+        printf("\n--- ï¿½Pï¿½ï¿½Lï¿½ï¿½ï¿½Aï¿½vï¿½ï¿½ ---\n");
+        printf("1. ï¿½Pï¿½ï¿½ï¿½oï¿½^\n");
+        printf("2. ï¿½Nï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n");
+        printf("3. ï¿½Iï¿½ï¿½\n");
+        printf("ï¿½Iï¿½ï¿½: ");
         scanf("%d", &choice);
 
         if (choice == 1) addWordMenu();
         else if (choice == 2) quiz();
         else if (choice == 3) break;
-        else printf("–³Œø‚È“ü—Í‚Å‚·\n");
+        else printf("ï¿½ï¿½ï¿½ï¿½ï¿½È“ï¿½ï¿½Í‚Å‚ï¿½\n");
     }
 
     return 0;
