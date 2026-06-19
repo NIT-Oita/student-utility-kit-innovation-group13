@@ -15,7 +15,7 @@ void addWordMenu() {
     scanf("%s", meaning);
 
     if (addWord(word, meaning)) {
-        printf("�o�^���\n");
+        printf("�o�^��\n");
     } else {
         printf("�o�^����ł�\n");
     }
