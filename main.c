@@ -17,7 +17,7 @@ void addWordMenu() {
     if (addWord(word, meaning)) {
         printf("�o�^��\n");
     } else {
-        printf("�o�^����ł�\n");
+        printf("�o�^����ł\n");
     }
 }
 
