@@ -1,130 +1,49 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "storage.h"
 
-Word words[MAX_WORDS];
-int wordCount = 0;
+int loadQuestions(int subject, char question[][100], char answer[][100]) {
+    int count = 0;
 
-void loadWords()
-{
-    FILE *fp = fopen("words.txt", "r");
+    while (count < 100) {
+        if (subject == 1)
+            printf("日本語: ");
+        else
+            printf("問題: ");
 
-    if (fp == NULL)
-        return;
+        fgets(question[count], 100, stdin);
+        question[count][strcspn(question[count], "\n")] = '\0';
 
-    while (wordCount < MAX_WORDS &&
-           fscanf(fp,
-                  "%49s %49s",
-                  words[wordCount].word,
-                  words[wordCount].meaning) == 2)
-    {
-        wordCount++;
+        if (strcmp(question[count], "end") == 0)
+            break;
+
+        if (subject == 1)
+            printf("英語: ");
+        else
+            printf("答え: ");
+
+        fgets(answer[count], 100, stdin);
+        answer[count][strcspn(answer[count], "\n")] = '\0';
+
+        count++;
+        printf("\n");
     }
 
-    fclose(fp);
+    return count;
 }
 
-void saveWords()
-{
-    FILE *fp = fopen("words.txt", "w");
+void shuffleQuestions(int count, char question[][100], char answer[][100]) {
+    for (int i = 0; i < count; i++) {
+        int r = rand() % count;
 
-    if (fp == NULL)
-        return;
+        char temp[100];
 
-    for (int i = 0; i < wordCount; i++)
-    {
-        fprintf(fp,
-                "%s %s\n",
-                words[i].word,
-                words[i].meaning);
+        strcpy(temp, question[i]);
+        strcpy(question[i], question[r]);
+        strcpy(question[r], temp);
+
+        strcpy(temp, answer[i]);
+        strcpy(answer[i], answer[r]);
+        strcpy(answer[r], temp);
     }
-
-    fclose(fp);
-}
-
-int addWord(const char *word,
-            const char *meaning)
-{
-    if (wordCount >= MAX_WORDS)
-        return 0;
-
-    strcpy(words[wordCount].word, word);
-    strcpy(words[wordCount].meaning, meaning);
-
-    wordCount++;
-
-    saveWords();
-
-    return 1;
-}
-
-Word* getRandomWord()
-{
-    if (wordCount == 0)
-        return NULL;
-
-    int index = rand() % wordCount;
-
-    return &words[index];
-}
-
-void listWords()
-{
-    printf("\n====================\n");
-    printf("      単語一覧\n");
-    printf("====================\n");
-
-    if (wordCount == 0)
-    {
-        printf("単語がありません\n");
-        return;
-    }
-
-    for (int i = 0; i < wordCount; i++)
-    {
-        printf("%d. %s = %s\n",
-               i + 1,
-               words[i].word,
-               words[i].meaning);
-    }
-}
-
-void searchWord(const char *word)
-{
-    for (int i = 0; i < wordCount; i++)
-    {
-        if (strcmp(words[i].word, word) == 0)
-        {
-            printf("\n見つかりました！\n");
-            printf("%s = %s\n",
-                   words[i].word,
-                   words[i].meaning);
-            return;
-        }
-    }
-
-    printf("見つかりませんでした\n");
-}
-
-int deleteWord(const char *word)
-{
-    for (int i = 0; i < wordCount; i++)
-    {
-        if (strcmp(words[i].word, word) == 0)
-        {
-            for (int j = i; j < wordCount - 1; j++)
-            {
-                words[j] = words[j + 1];
-            }
-
-            wordCount--;
-
-            saveWords();
-
-            return 1;
-        }
-    }
-
-    return 0;
 }
