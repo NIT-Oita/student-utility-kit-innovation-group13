@@ -55,7 +55,7 @@ int main() {
         printf("\n");
     }
 
-    /* ランダムシャッフル */
+    // 問題のランダムシャッフル 
     for (int i = 0; i < count; i++) {
         int r = rand() % count;
 
@@ -82,16 +82,16 @@ int main() {
         userAnswer[strcspn(userAnswer, "\n")] = '\0';
 
         if (strcmp(userAnswer, answer[i]) == 0) {
-            printf("○ 正解！\n");
+            printf("正解\n");
             score++;
         } else {
-            printf("× 不正解！\n");
+            printf("不正解\n");
             printf("正解: %s\n", answer[i]);
         }
     }
 
     printf("\n=== 結果 ===\n");
-    printf("%d問中%d問正解！\n", count, score);
+    printf("%d問中%d問正解\n", count, score);
 
     if (count > 0) {
         printf("正答率 %.1f%%\n",
