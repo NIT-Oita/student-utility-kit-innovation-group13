@@ -1,36 +1,68 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
- 
-/* UI関数 */
-int selectSubject();
-void showRegisterMode();
-void showStudyMode();
-void showResult(int score, int count);
- 
-/* データ管理（B） */
-int loadQuestions(int subject, char question[][100], char answer[][100]);
-void shuffleQuestions(int count, char question[][100], char answer[][100]);
- 
-/* ロジック（A） */
-int startQuiz(int count, char question[][100], char answer[][100]);
- 
+
+#include "ui.h"
+#include "logic.h"
+#include "storage.h"
+
 int main() {
-    srand(time(NULL));
- 
-    char question[100][100];
-    char answer[100][100];
- 
-    int subject = selectSubject();
-    showRegisterMode();
- 
-    int count = loadQuestions(subject, question, answer);
-    shuffleQuestions(count, question, answer);
- 
-    showStudyMode();
-    int score = startQuiz(count, question, answer);
- 
-    showResult(score, count);
- 
+
+    Quiz *quizList;
+
+    quizList =
+        malloc(sizeof(Quiz) * 100);
+
+    if(quizList == NULL)
+        return 1;
+
+    while(1) {
+
+        int menu =
+            showMainMenu();
+
+        if(menu == 1) {
+
+            int subject =
+                selectSubject();
+
+            int count =
+                loadQuestions(subject,
+                              quizList);
+
+            if(count == 0) {
+
+                printf("問題がありません\n");
+                continue;
+            }
+
+            int score =
+                startQuiz(quizList,
+                          count);
+
+            showResult(score,
+                       count);
+        }
+
+        else if(menu == 2) {
+
+            addQuestions(
+                selectSubject());
+        }
+
+        else if(menu == 3) {
+
+            showQuestions(
+                selectSubject());
+        }
+
+        else if(menu == 4) {
+            printf("勉強おつかれさまでした");
+
+            break;
+        }
+    }
+
+    free(quizList);
+
     return 0;
 }
