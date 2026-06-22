@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <time.h>
  
-/* UIé–¢æ•° */
+/* UIŠÖ” */
 int selectSubject();
 void showRegisterMode();
 void showStudyMode();
 void showResult(int score, int count);
  
-/* ãƒ‡ãƒ¼ã‚¿ç®¡ç†ï¼ˆBï¼‰ */
+/* ƒf[ƒ^ŠÇ—iBj */
 int loadQuestions(int subject, char question[][100], char answer[][100]);
 void shuffleQuestions(int count, char question[][100], char answer[][100]);
  
-/* ãƒ­ã‚¸ãƒƒã‚¯ï¼ˆAï¼‰ */
+/* ƒƒWƒbƒNiAj */
 int startQuiz(int count, char question[][100], char answer[][100]);
  
 int main() {

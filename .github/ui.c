@@ -2,42 +2,42 @@
  
 int selectSubject() {
     int subject;
-    printf("=== ç§‘ç›®é¸æŠ ===\n");
-    printf("1. è‹±å˜èª\n");
-    printf("2. ç¤¾ä¼š\n");
-    printf("é¸æŠ: ");
+    printf("=== ‰È–Ú‘I‘ğ ===\n");
+    printf("1. ‰p’PŒê\n");
+    printf("2. Ğ‰ï\n");
+    printf("‘I‘ğ: ");
     scanf("%d", &subject);
     getchar();
     return subject;
 }
  
 void showRegisterMode() {
-    printf("\n=== ç™»éŒ²ãƒ¢ãƒ¼ãƒ‰ ===\n");
-    printf("çµ‚äº†ã™ã‚‹ã«ã¯ end ã¨å…¥åŠ›\n\n");
+    printf("\n=== “o˜^ƒ‚[ƒh ===\n");
+    printf("I—¹‚·‚é‚É‚Í end ‚Æ“ü—Í\n\n");
 }
  
 void showStudyMode() {
-    printf("\n=== å­¦ç¿’ãƒ¢ãƒ¼ãƒ‰ ===\n");
+    printf("\n=== ŠwKƒ‚[ƒh ===\n");
 }
  
 void showResult(int score, int count) {
-    printf("\n=== çµæœ ===\n");
-    printf("%då•ä¸­%då•æ­£è§£ï¼\n", count, score);
+    printf("\n=== Œ‹‰Ê ===\n");
+    printf("%d–â’†%d–â³‰ğI\n", count, score);
  
     if (count > 0) {
         double rate = (double)score / count * 100;
-        printf("æ­£ç­”ç‡ %.1f%%\n", rate);
+        printf("³“š—¦ %.1f%%\n", rate);
  
         if (score == count) {
-            printf("æº€ç‚¹ï¼ã™ã”ã„ï¼\n");
+            printf("–“_I‚·‚²‚¢I\n");
         } else if (rate >= 80) {
-            printf("ã‚ˆãã§ãã¾ã—ãŸï¼\n");
+            printf("‚æ‚­‚Å‚«‚Ü‚µ‚½I\n");
         } else if (rate >= 50) {
-            printf("ã‚‚ã†å°‘ã—ï¼\n");
+            printf("‚à‚¤­‚µI\n");
         } else {
-            printf("å¾©ç¿’ã—ã‚ˆã†ï¼\n");
+            printf("•œK‚µ‚æ‚¤I\n");
         }
     }
  
-    printf("\nå­¦ç¿’çµ‚äº†ï¼\n");
+    printf("\nŠwKI—¹I\n");
 }

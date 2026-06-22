@@ -7,9 +7,9 @@ int loadQuestions(int subject, char question[][100], char answer[][100]) {
  
     while (count < 100) {
         if (subject == 1)
-            printf("æ—¥æœ¬èªž: ");
+            printf("“ú–{Œê: ");
         else
-            printf("å•é¡Œ: ");
+            printf("–â‘è: ");
  
         fgets(question[count], 100, stdin);
         question[count][strcspn(question[count], "\n")] = '\0';
@@ -18,9 +18,9 @@ int loadQuestions(int subject, char question[][100], char answer[][100]) {
             break;
  
         if (subject == 1)
-            printf("è‹±èªž: ");
+            printf("‰pŒê: ");
         else
-            printf("ç­”ãˆ: ");
+            printf("“š‚¦: ");
  
         fgets(answer[count], 100, stdin);
         answer[count][strcspn(answer[count], "\n")] = '\0';

@@ -10,11 +10,11 @@ int startQuiz(int count, char question[][100], char answer[][100]) {
  
     for (int i = 0; i < count; i++) {
 
-        printf("\nå•é¡Œ %d\n", i + 1);
+        printf("\n–â‘è %d\n", i + 1);
 
         printf("%s\n", question[i]);
 
-        printf("ç­”ãˆ: ");
+        printf("“š‚¦: ");
  
         fgets(userAnswer, 100, stdin);
 
@@ -22,15 +22,15 @@ int startQuiz(int count, char question[][100], char answer[][100]) {
  
         if (strcmp(userAnswer, answer[i]) == 0) {
 
-            printf("â—‹ æ­£è§£ï¼\n");
+            printf("› ³‰ðI\n");
 
             score++;
 
         } else {
 
-            printf("Ã— ä¸æ­£è§£ï¼\n");
+            printf("~ •s³‰ðI\n");
 
-            printf("æ­£è§£: %s\n", answer[i]);
+            printf("³‰ð: %s\n", answer[i]);
 
         }
 
