@@ -3,41 +3,33 @@
 
 /*
 *ui.h
-*暗記フラッシュカードの画面表示および、入力受付を作ります。
-*ここでは、データの保存やカードの管理の処理はしないので注意
+
 */
 
-/*タイトル画面の表示*/
+/*�^�C�g����ʕ\��*/
 void show_title(void);
 
-/*メインメニューの表示*/
+/*���C�����j���[�\��*/
 void show_main_menu(void);
-/*
-メインメニューの構想は、
-1.暗記フラッシュカード開始
-2.暗記カードを追加
-3.暗記カード一覧
-4.終了
-メインメニューで番号を入力してもらう
-*/
 
+/*�ԍ���I��*/
 int input_menu_choice(void);
 
-/*問題文の表示*/
+/*��蕶�\��*/
 void show_question(const char question[]);
 
-/*答えを表示*/
+/*������\��*/
 void show_answer(const char answer[]);
 
-/*ユーザーが回答を入力*/
+/*���[�U�[���񓚂����*/
 void input_answer(char answer[], int size);
 
 void show_result(int is_correct);
 
-/*メッセージを表示*/
+/*���b�Z�[�W��\��*/
 void show_message(const char message[]);
 
-/*Enterキーが押されるまで待つ*/
+/*�G���^�[���������܂ő҂�*/
 void wait_enter(void);
 
 #endif
