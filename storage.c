@@ -2,48 +2,95 @@
 #include <string.h>
 #include <stdlib.h>
 
-int loadQuestions(int subject, char question[][100], char answer[][100]) {
-    int count = 0;
+#include "storage.h"
 
-    while (count < 100) {
-        if (subject == 1)
-            printf("日本語: ");
-        else
-            printf("問題: ");
+char *getFileName(int subject) {
 
-        fgets(question[count], 100, stdin);
-        question[count][strcspn(question[count], "\n")] = '\0';
+    if(subject == 1)
+        return "english.txt";
 
-        if (strcmp(question[count], "end") == 0)
+    return "social.txt";
+}
+
+void addQuestions(int subject) {
+
+    FILE *fp =
+        fopen(getFileName(subject), "a");
+
+    char question[100];
+    char answer[100];
+
+    printf("終了は end\n\n");
+
+    while(1) {
+
+        printf("問題 : ");
+        fgets(question,100,stdin);
+
+        question[strcspn(question,"\n")] = '\0';
+
+        if(strcmp(question,"end")==0)
             break;
 
-        if (subject == 1)
-            printf("英語: ");
-        else
-            printf("答え: ");
+        printf("答え : ");
+        fgets(answer,100,stdin);
 
-        fgets(answer[count], 100, stdin);
-        answer[count][strcspn(answer[count], "\n")] = '\0';
+        answer[strcspn(answer,"\n")] = '\0';
+
+        fprintf(fp,
+                "%s,%s\n",
+                question,
+                answer);
+    }
+
+    fclose(fp);
+}
+
+int loadQuestions(int subject,
+                  Quiz *quizList) {
+
+    FILE *fp =
+        fopen(getFileName(subject),"r");
+
+    if(fp == NULL)
+        return 0;
+
+    int count = 0;
+
+    char line[250];
+
+    while(fgets(line,250,fp)) {
+
+        sscanf(line,
+               "%99[^,],%99[^\n]",
+               quizList[count].question,
+               quizList[count].answer);
 
         count++;
-        printf("\n");
     }
+
+    fclose(fp);
 
     return count;
 }
 
-void shuffleQuestions(int count, char question[][100], char answer[][100]) {
-    for (int i = 0; i < count; i++) {
-        int r = rand() % count;
+void showQuestions(int subject) {
 
-        char temp[100];
+    FILE *fp =
+        fopen(getFileName(subject),"r");
 
-        strcpy(temp, question[i]);
-        strcpy(question[i], question[r]);
-        strcpy(question[r], temp);
+    char line[250];
 
-        strcpy(temp, answer[i]);
-        strcpy(answer[i], answer[r]);
-        strcpy(answer[r], temp);
+    if(fp == NULL) {
+
+        printf("データなし\n");
+        return;
     }
+
+    while(fgets(line,250,fp)) {
+
+        printf("%s", line);
+    }
+
+    fclose(fp);
 }
