@@ -1,43 +1,43 @@
 #include <stdio.h>
-
 #include <string.h>
- 
-int startQuiz(int count, char question[][100], char answer[][100]) {
 
-    char userAnswer[100];
+#include "logic.h"
+
+int startQuiz(Quiz *quizList,
+              int count) {
 
     int score = 0;
- 
-    for (int i = 0; i < count; i++) {
 
-        printf("\n–â‘è %d\n", i + 1);
+    char answer[100];
 
-        printf("%s\n", question[i]);
+    for(int i=0;i<count;i++) {
 
-        printf("“š‚¦: ");
- 
-        fgets(userAnswer, 100, stdin);
+        printf("\nå•é¡Œ%d\n",
+               i + 1);
 
-        userAnswer[strcspn(userAnswer, "\n")] = '\0';
- 
-        if (strcmp(userAnswer, answer[i]) == 0) {
+        printf("%s\n",
+               quizList[i].question);
 
-            printf("› ³‰ðI\n");
+        printf("ç­”ãˆ : ");
 
+        fgets(answer,100,stdin);
+
+        answer[strcspn(answer,"\n")] = '\0';
+
+        if(strcmp(answer,
+                  quizList[i].answer)==0) {
+
+            printf("æ­£è§£ï¼\n");
             score++;
-
-        } else {
-
-            printf("~ •s³‰ðI\n");
-
-            printf("³‰ð: %s\n", answer[i]);
-
         }
 
+        else {
+
+            printf("ä¸æ­£è§£\n");
+            printf("æ­£è§£ : %s\n",
+                   quizList[i].answer);
+        }
     }
- 
+
     return score;
-
 }
-
- 
