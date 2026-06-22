@@ -1,4 +1,4 @@
-# 学生生活支援キット開発プロジェクト (Student Utility Kit Innovation)
+# 学生生活支援キット開発プロジェクト (Student Utility Kit Innovation) test
 
 > ⚠️ **NOTICE / 注意**
 > このREADMEはテンプレートです。**自分たちのプロジェクトの内容に書き換えてください**。
